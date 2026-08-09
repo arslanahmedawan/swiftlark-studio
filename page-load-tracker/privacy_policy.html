@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - Page Load Tracker</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card-bg: #ffffff;
+    --text-primary: #1a1d23;
+    --text-secondary: #5a616b;
+    --accent: #2563eb;
+    --border: #e4e6ea;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    padding: 40px 16px;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px;
+  }
+
+  header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    display: inline-block;
+    background: #e6f1fb;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+
+  .updated {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 19px;
+    margin: 32px 0 12px;
+    font-weight: 600;
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 15.5px;
+    margin: 0 0 14px;
+  }
+
+  ul {
+    margin: 0 0 14px;
+    padding-left: 20px;
+  }
+
+  li {
+    color: var(--text-secondary);
+    font-size: 15.5px;
+    margin-bottom: 8px;
+  }
+
+  strong {
+    color: var(--text-primary);
+  }
+
+  .perm-list {
+    display: grid;
+    gap: 10px;
+    margin: 0 0 14px;
+  }
+
+  .perm-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .perm-name {
+    font-family: "SF Mono", Consolas, monospace;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .perm-desc {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .contact-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 8px;
+  }
+
+  .contact-box p {
+    margin: 0;
+  }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 20px 12px; }
+    .container { padding: 28px 20px; }
+    h1 { font-size: 23px; }
+    h2 { font-size: 17px; }
+    p, li { font-size: 14.5px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">Privacy Policy</span>
+      <h1>Page Load Tracker</h1>
+      <p class="updated">Last updated: August 2026</p>
+    </header>
+
+    <p>Page Load Tracker ("the extension") is a Chrome browser extension that measures how long a website takes to load. It shows the total load time as a badge in the toolbar and a per-stage breakdown (DNS, connection, request, response, DOM parsing, and more) in its popup.</p>
+
+    <h2>Data we collect</h2>
+    <p>Page Load Tracker does not collect, transmit, sell, or share any user data with the developer or with any third party. All processing happens entirely on the user's own device, inside their browser.</p>
+    <p>The extension reads only the performance timing data your browser already records for the current page via the built-in Navigation Timing API. This timing data:</p>
+    <ul>
+      <li>Is stored only temporarily on the user's device, in the browser's local extension storage</li>
+      <li>Is automatically deleted when the browser tab it belongs to is closed</li>
+      <li>Is never sent to any external server, API, or third party</li>
+      <li>Is never accessed, viewed, or logged by the developer</li>
+    </ul>
+
+    <h2>Permissions and why they're needed</h2>
+    <div class="perm-list">
+      <div class="perm-item">
+        <span class="perm-name">storage</span>
+        <p class="perm-desc">Saves the measured load timing for each open tab locally, so the popup can display the breakdown for the currently active tab. Data is removed when the tab closes.</p>
+      </div>
+      <div class="perm-item">
+        <span class="perm-name">Content script access (all sites)</span>
+        <p class="perm-desc">Runs on every page the user visits solely to read that page's own Navigation Timing data. It never reads, modifies, or sends any page content.</p>
+      </div>
+    </div>
+
+    <h2>Data sharing</h2>
+    <p>We do not sell, rent, or transfer user data to third parties. We do not use any data for advertising, credit, or lending purposes. We do not use data for any purpose unrelated to the extension's single purpose of measuring and displaying page load time.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted at this same URL with a revised "Last updated" date.</p>
+
+    <h2>Contact</h2>
+    <div class="contact-box">
+      <p>For questions about this privacy policy, contact: <strong>arslan.awan163@gmail.com</strong></p>
+    </div>
+
+    <footer>
+      &copy; 2026 Page Load Tracker. All rights reserved.
+    </footer>
+  </div>
+
+</body>
+</html>
