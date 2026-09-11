@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - Chrome Extension Extractor - CRX & ZIP</title>
+<style>
+  :root {
+    --bg: #0a0f1a;
+    --card: rgba(255,255,255,0.06);
+    --card-border: rgba(255,255,255,0.09);
+    --text: #e6ebf2;
+    --muted: #8a97ad;
+    --accent: #00d68f;
+    --accent-2: #00b4ff;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    padding: 40px 16px;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  /* orbs like popup */
+  .bg-orb { position: fixed; border-radius:50%; filter: blur(40px); opacity:0.45; pointer-events:none; }
+  .orb-1 { width: 500px; height:500px; background: radial-gradient(circle, rgba(0,214,143,0.18), transparent 70%); top:-120px; right:-120px; }
+  .orb-2 { width: 400px; height:400px; background: radial-gradient(circle, rgba(0,180,255,0.14), transparent 70%); top: 380px; left:-100px; }
+  .orb-3 { width: 360px; height:360px; background: radial-gradient(circle, rgba(122,92,255,0.12), transparent 70%); bottom:-80px; right: 10%; }
+
+  .container {
+    position: relative; z-index:1;
+    max-width: 760px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.045);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 44px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  header {
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display:flex; align-items:center; gap:14px;
+  }
+  .logo {
+    width: 44px; height:44px; border-radius:12px;
+    background: linear-gradient(135deg, #00d68f, #0099ff);
+    display:grid; place-items:center;
+    font-size:22px; box-shadow: 0 8px 20px rgba(0,214,143,0.25);
+    flex-shrink:0;
+  }
+  .header-text h1 { font-size: 22px; font-weight: 800; letter-spacing:-0.3px; line-height:1.1; }
+  .header-text p { font-size:13px; color: var(--muted); margin-top:4px; }
+  .badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background: rgba(0,214,143,0.12); border:1px solid rgba(0,214,143,0.22); color: var(--accent);
+    font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase;
+    padding:5px 10px; border-radius:20px; margin-bottom:10px;
+  }
+  .badge .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; box-shadow:0 0 8px var(--accent); }
+
+  h2 {
+    font-size: 16px; font-weight:700; margin: 28px 0 10px;
+    display:flex; align-items:center; gap:8px; letter-spacing:-0.2px;
+  }
+  h2 .icon { width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06); font-size:14px; flex-shrink:0; }
+  p { color: var(--muted); font-size:14.5px; margin:0 0 12px; }
+  p strong { color: var(--text); }
+  ul { margin:0 0 12px; padding-left:20px; }
+  li { color: var(--muted); font-size:14.5px; margin-bottom:6px; }
+  li strong { color: var(--text); }
+
+  .perm-list { display:grid; gap:10px; margin: 12px 0; }
+  .perm-item {
+    background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
+    border-radius:12px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .perm-icon { width:36px; height:36px; border-radius:10px; display:grid; place-items:center; background: rgba(0,214,143,0.10); border:1px solid rgba(0,214,143,0.15); color: var(--accent); font-size:14px; flex-shrink:0; margin-top:1px; }
+  .perm-name { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; color: var(--accent); font-weight:700; display:block; margin-bottom:3px; }
+  .perm-desc { font-size:13.5px; color: var(--muted); margin:0; line-height:1.5; }
+
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(0,214,143,0.08), rgba(0,180,255,0.06));
+    border:1px solid rgba(0,214,143,0.15); border-radius:12px;
+    padding:16px 18px; margin: 16px 0; display:flex; gap:12px; align-items:flex-start;
+  }
+  .highlight-box .icon { font-size:20px; margin-top:1px; }
+  .highlight-box p { margin:0; font-size:13.5px; color: var(--text); }
+  .highlight-box p span { color: var(--muted); }
+
+  .contact-box {
+    background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
+    border-radius:12px; padding:18px 20px; margin-top:10px; display:flex; align-items:center; gap:12px;
+  }
+  .contact-icon { width:40px; height:40px; border-radius:10px; display:grid; place-items:center; background: linear-gradient(135deg, #00b4ff, #7a5cff); color:white; font-size:18px; flex-shrink:0; }
+  .contact-box p { margin:0; font-size:14px; }
+  .contact-box a { color: var(--accent); text-decoration:none; font-weight:600; }
+  .contact-box a:hover { text-decoration: underline; }
+
+  footer {
+    margin-top: 36px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.06);
+    font-size:12px; color: var(--muted); text-align:center; display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+  }
+  footer span.sep { opacity:0.3; }
+
+  @media (max-width: 600px) {
+    body { padding: 20px 12px; }
+    .container { padding: 26px 18px; border-radius:16px; }
+    header { flex-direction: column; align-items:flex-start; }
+    h2 { font-size:15px; }
+    p, li { font-size:13.5px; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Privacy Policy</div>
+    <header>
+      <div>
+        <img src="https://imglink.cc/cdn/hZSNjq4gWP.png" style="width: 40px;" />
+      </div>
+      <div class="header-text">
+        <h1>Chrome Extension Extractor - CRX & ZIP</h1>
+        <p>Last updated: September 11, 2026 • Version 1.0.1</p>
+      </div>
+    </header>
+
+    <p><strong>Chrome Extension Extractor - CRX & ZIP</strong> ("the extension") lets you download any Chrome Web Store or Microsoft Edge Add-ons extension as an original <strong>CRX</strong> package or as an unpacked <strong>ZIP</strong> for source inspection, and convert local <strong>CRX → ZIP</strong> offline. Your privacy is central — the extension is built to do everything locally without collecting your data.</p>
+
+    <div class="highlight-box">
+      <div class="icon">🔒</div>
+      <p><strong>No data collection. No tracking. No server.</strong><br><span>All processing happens on your device. We do not collect, store, transmit, sell, or share any personal data with the developer or any third party.</span></p>
+    </div>
+
+    <h2><span class="icon">📦</span> What the extension does</h2>
+    <p>When you click <strong>Download as ZIP</strong> or <strong>Download as CRX</strong> on a Chrome Web Store (<code>chromewebstore.google.com</code>) or Edge Add-ons (<code>microsoftedge.microsoft.com</code>) page, the extension:</p>
+    <ul>
+      <li>Reads the current tab's URL to extract the 32-character extension ID and the page title (used only to generate a clean filename like <code>my-extension.zip</code>)</li>
+      <li>Fetches the official CRX package directly from <code>clients2.google.com</code> or <code>edge.microsoft.com</code> delivery servers</li>
+      <li>For ZIP: strips the CRX header (CRX2/CRX3) locally and triggers a download via <code>chrome.downloads</code></li>
+      <li>For local CRX → ZIP: reads the file you selected via drag-and-drop, slices the ZIP payload locally, and triggers a download — the file never leaves your device</li>
+    </ul>
+
+    <h2><span class="icon">🚫</span> Data we do NOT collect</h2>
+    <ul>
+      <li><strong>No browsing history</strong> — we only inspect the active tab when you click the extension, and only if it's a store page</li>
+      <li><strong>No personal data</strong> — no names, emails, cookies, or identifiers are collected or stored</li>
+      <li><strong>No analytics or tracking</strong> — no Google Analytics, no telemetry, no ads</li>
+      <li><strong>No external transmission</strong> — the downloaded CRX/ZIP content is never uploaded anywhere; Edge/Chrome store fetches go directly to official Google/Microsoft servers</li>
+      <li><strong>No background collection</strong> — the extension is idle until you interact with it</li>
+    </ul>
+
+    <h2><span class="icon">🔑</span> Permissions and why they're needed</h2>
+    <div class="perm-list">
+      <div class="perm-item">
+        <div class="perm-icon">⬇</div>
+        <div>
+          <span class="perm-name">downloads</span>
+          <p class="perm-desc">Saves the CRX or ZIP file to your Downloads folder via <code>chrome.downloads.download()</code> with <code>saveAs</code> picker.</p>
+        </div>
+      </div>
+      <div class="perm-item">
+        <div class="perm-icon">☰</div>
+        <div>
+          <span class="perm-name">contextMenus</span>
+          <p class="perm-desc">Adds "Download as CRX / ZIP" to the right-click menu, but only on store pages (<code>documentUrlPatterns</code>). No menu elsewhere.</p>
+        </div>
+      </div>
+      <div class="perm-item">
+        <div class="perm-icon">◉</div>
+        <div>
+          <span class="perm-name">activeTab</span>
+          <p class="perm-desc">Temporarily accesses the active tab's URL and title only when you click the extension to verify it's a store page and build the filename.</p>
+        </div>
+      </div>
+      <div class="perm-item">
+        <div class="perm-icon">🌐</div>
+        <div>
+          <span class="perm-name">host_permissions</span>
+          <p class="perm-desc">Allows fetching the CRX from official stores: <code>clients2.google.com</code>, <code>clients2.googleusercontent.com</code>, <code>edge.microsoft.com</code>, <code>*.delivery.mp.microsoft.com</code>, <code>*.microsoft.com</code>. No other hosts are accessed.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2><span class="icon">🤝</span> Data sharing</h2>
+    <p>We do not sell, rent, or transfer any user data to third parties. We do not use data for advertising, credit, or profiling. The only network requests are the CRX fetches to Google/Microsoft's official extension delivery servers, which are required to download the extension you requested.</p>
+
+    <h2><span class="icon">⚙️</span> Local processing</h2>
+    <p>CRX → ZIP conversion is <strong>100% offline</strong>. The CRX header parsing (<code>Cr24</code> magic, version 2/3, header stripping) runs entirely in your browser's service worker or popup — no server, no upload, no AI processing.</p>
+
+    <h2><span class="icon">👶</span> Children's privacy</h2>
+    <p>The extension does not knowingly collect data from anyone, including children under 13. It is a utility tool with no sign-in or data entry.</p>
+
+    <h2><span class="icon">📝</span> Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted at this same URL with a revised "Last updated" date. Material changes will be reflected in the Chrome Web Store listing.</p>
+
+    <footer>
+      <span>&copy; 2026 Chrome Extension Extractor - CRX & ZIP</span>
+      <span class="sep">•</span>
+      <span>No data collected • All processing local</span>
+    </footer>
+  </div>
+</body>
+</html>
