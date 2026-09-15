@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - Storage Manager - LocalStorage, SessionStorage & Cookies</title>
+<style>
+  :root {
+    --canvas: #f0f2f5;
+    --card-bg: #ffffff;
+    --card-border: #d0d7de;
+    --border: #d0d7de;
+    --text: #1f2328;
+    --muted: #656d76;
+    --accent: #0969da;
+    --accent-2: #1a7f37;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.07);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body {
+    background: var(--canvas);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    padding: 32px 16px;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 36px 40px;
+    box-shadow: var(--shadow);
+  }
+  header {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    display:flex; align-items:center; gap:14px;
+  }
+  .logo-img {
+    width: 44px; height:44px; border-radius:10px;
+    background: #fff;
+    /* border: 1px solid var(--border); */
+    object-fit: contain;
+    padding: 4px;
+    flex-shrink:0;
+  }
+  .header-text h1 { font-size: 20px; font-weight: 800; letter-spacing:-0.3px; line-height:1.2; color: #0a0a0a; }
+  .header-text p { font-size:12.5px; color: var(--muted); margin-top:4px; }
+  .badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background: #ddf4ff; border:1px solid #54aeff66; color: var(--accent);
+    font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase;
+    padding:5px 10px; border-radius:20px; margin-bottom:12px;
+  }
+  .badge .dot { width:6px; height:6px; background:var(--accent); border-radius:50%; }
+  h2 {
+    font-size: 15px; font-weight:700; margin: 26px 0 10px;
+    display:flex; align-items:center; gap:8px; letter-spacing:-0.2px; color: #0a0a0a;
+  }
+  h2 .icon { width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background: #f6f8fa; border:1px solid var(--border); font-size:14px; flex-shrink:0; }
+  p { color: var(--muted); font-size:14px; margin:0 0 12px; line-height:1.6; }
+  p strong { color: var(--text); }
+  ul { margin:0 0 12px; padding-left:20px; }
+  li { color: var(--muted); font-size:14px; margin-bottom:6px; }
+  li strong { color: var(--text); }
+  code { background: #f6f8fa; border:1px solid var(--border); padding:1px 5px; border-radius:6px; font-size:12.5px; color: var(--text); }
+  .perm-list { display:grid; gap:10px; margin: 12px 0; }
+  .perm-item {
+    background: #f6f8fa; border:1px solid var(--border);
+    border-radius:10px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .perm-icon { width:36px; height:36px; border-radius:8px; display:grid; place-items:center; background: #ddf4ff; border:1px solid #54aeff33; color: var(--accent); font-size:14px; flex-shrink:0; margin-top:1px; }
+  .perm-name { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12.5px; color: var(--accent); font-weight:700; display:block; margin-bottom:3px; }
+  .perm-desc { font-size:13px; color: var(--muted); margin:0; line-height:1.5; }
+  .highlight-box {
+    background: #ddf4ff; border:1px solid #54aeff33; border-radius:10px;
+    padding:16px 18px; margin: 16px 0; display:flex; gap:12px; align-items:flex-start;
+  }
+  .highlight-box .icon { font-size:20px; margin-top:1px; }
+  .highlight-box p { margin:0; font-size:13.5px; color: var(--text); }
+  .highlight-box p span { color: var(--muted); }
+  .contact-box {
+    background: #f6f8fa; border:1px solid var(--border);
+    border-radius:10px; padding:18px 20px; margin-top:10px; display:flex; align-items:center; gap:12px;
+  }
+  .contact-icon { width:40px; height:40px; border-radius:10px; display:grid; place-items:center; background: var(--accent); color:white; font-size:18px; flex-shrink:0; }
+  .contact-box p { margin:0; font-size:14px; }
+  .contact-box a { color: var(--accent); text-decoration:none; font-weight:600; }
+  .contact-box a:hover { text-decoration: underline; }
+  footer {
+    margin-top: 32px; padding-top:16px; border-top:1px solid var(--border);
+    font-size:12px; color: var(--muted); text-align:center; display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+  }
+  footer span.sep { opacity:0.3; }
+  @media (max-width: 600px) {
+    body { padding: 16px 12px; }
+    .container { padding: 24px 18px; border-radius:12px; }
+    header { flex-direction: column; align-items:flex-start; }
+    h2 { font-size:14.5px; }
+    p, li { font-size:13.5px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge"><span class="dot"></span> Privacy Policy</div>
+    <header>
+      <img src="https://imglink.cc/cdn/e6bQqjMdoW.png" class="logo-img" alt="Storage Manager icon" />
+      <div class="header-text">
+        <h1>Storage Manager - LocalStorage, SessionStorage & Cookies</h1>
+        <p>Last updated: September 15, 2026 • Version 1.0.0</p>
+      </div>
+    </header>
+
+    <p><strong>Storage Manager - LocalStorage, SessionStorage & Cookies</strong> ("the extension") is a classic card editor that lets you view, add, edit, delete, search, and import/export <strong>localStorage</strong>, <strong>sessionStorage</strong> and <strong>cookies</strong> for the currently active site. Your privacy is central — everything happens locally in your browser.</p>
+
+    <div class="highlight-box">
+      <div class="icon">🔒</div>
+      <p><strong>No data collection. No tracking. No server.</strong><br><span>All storage inspection and editing happens on your device. We do not collect, store, transmit, sell, or share any personal data with the developer or any third party.</span></p>
+    </div>
+
+    <h2><span class="icon">📦</span> What the extension does</h2>
+    <p>When you open the popup on any <code>http/https</code> site, the extension:</p>
+    <ul>
+      <li>Injects a lightweight script via <code>chrome.scripting.executeScript</code> into the active tab to read/write <code>window.localStorage</code> and <code>window.sessionStorage</code> for that origin only</li>
+      <li>Uses <code>chrome.cookies.getAll / set / remove</code> via the background service worker to list and edit cookies for the current site</li>
+      <li>Lets you search/filter keys, pretty-print JSON values, copy to clipboard, and import/export JSON files (processed 100% locally) — files never leave your device</li>
+      <li>Stores only your UI preferences (theme <code>light/dark</code> and cookie column visibility) in <code>chrome.storage.local</code> — no site data is synced or uploaded</li>
+    </ul>
+
+    <h2><span class="icon">🚫</span> Data we do NOT collect</h2>
+    <ul>
+      <li><strong>No browsing history</strong> — only the active tab's hostname/origin is read to scope storage; no history is stored or transmitted</li>
+      <li><strong>No personal data</strong> — no names, emails, identifiers, or cookie values are collected by us</li>
+      <li><strong>No analytics or tracking</strong> — no Google Analytics, no telemetry, no ads</li>
+      <li><strong>No external transmission</strong> — localStorage/sessionStorage never leaves the page context; cookie operations stay between the extension and Chrome's cookie store; import/export files are handled via Blob downloads locally</li>
+      <li><strong>No background collection</strong> — content script is injected on demand only when you open the popup, not persistently</li>
+    </ul>
+
+    <h2><span class="icon">🔑</span> Permissions and why they're needed</h2>
+    <div class="perm-list">
+      <div class="perm-item">
+        <div class="perm-icon">◎</div>
+        <div>
+          <span class="perm-name">activeTab</span>
+          <p class="perm-desc">Accesses the currently active tab's URL/hostname to scope storage and cookies to that site and to inject the on-demand storage script.</p>
+        </div>
+      </div>
+      <div class="perm-item">
+        <div class="perm-icon">▣</div>
+        <div>
+          <span class="perm-name">scripting</span>
+          <p class="perm-desc">Executes a one-off function in the page's MAIN world to read/write <code>localStorage</code> / <code>sessionStorage</code> (not accessible from extension context otherwise). No persistent content script.</p>
+        </div>
+      </div>
+      <div class="perm-item">
+        <div class="perm-icon">🍪</div>
+        <div>
+          <span class="perm-name">cookies</span>
+          <p class="perm-desc">Lists, creates, edits and deletes cookies for the active site via <code>chrome.cookies</code> API. HttpOnly cookies are shown/deletable but HttpOnly flag cannot be unset — browser-enforced and surfaced as disabled.</p>
+        </div>
+      </div>
+      <div class="perm-item">
+        <div class="perm-icon">💾</div>
+        <div>
+          <span class="perm-name">storage</span>
+          <p class="perm-desc">Saves only extension settings (theme and cookie column prefs) via <code>chrome.storage.local</code>. Never used to exfiltrate site data.</p>
+        </div>
+      </div>
+      <div class="perm-item">
+        <div class="perm-icon">🌐</div>
+        <div>
+          <span class="perm-name">host_permissions: &lt;all_urls&gt;</span>
+          <p class="perm-desc">Required so <code>chrome.cookies</code> and <code>scripting</code> work on any https/http site you visit. No data is sent to any host — permission is only to read/write storage locally per site.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2><span class="icon">🤝</span> Data sharing</h2>
+    <p>We do not sell, rent, or transfer any user data to third parties. We do not use data for advertising, credit, or profiling. The only data touched is the site storage you explicitly choose to view/edit, and it remains between the page, Chrome's storage, and your local downloads.</p>
+
+    <h2><span class="icon">⚙️</span> Local processing</h2>
+    <p>Import/Export, JSON pretty-print, search/filter, and clipboard copy are all <strong>100% offline</strong>. Export creates a local <code>Blob</code> JSON file (<code>{hostname}-{type}-{timestamp}.json</code> or combined <code>-all-</code>), Import is parsed and validated locally before any write, with an overwrite/skip confirmation.</p>
+
+    <h2><span class="icon">👶</span> Children's privacy</h2>
+    <p>The extension does not knowingly collect data from anyone, including children under 13. It is a utility tool with no sign-in or data entry beyond the storage you edit on sites you visit.</p>
+
+    <h2><span class="icon">📝</span> Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted at this same URL with a revised "Last updated" date. Material changes will be reflected in the Chrome Web Store listing.</p>
+
+    <div class="contact-box">
+      <div class="contact-icon">✉</div>
+      <div>
+        <p><strong>Questions?</strong> Contact the developer via the Chrome Web Store support link for <strong>Storage Manager</strong>.</p>
+        <p style="margin-top:4px; font-size:13px; color: var(--muted);">No data collected • All processing local • Open source friendly</p>
+      </div>
+    </div>
+
+    <footer>
+      <span>&copy; 2026 Storage Manager - LocalStorage, SessionStorage & Cookies</span>
+      <span class="sep">•</span>
+      <span>No data collected • Classic card editor</span>
+    </footer>
+  </div>
+</body>
+</html>
